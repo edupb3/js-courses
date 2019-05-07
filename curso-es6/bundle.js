@@ -102,33 +102,39 @@
 // const google = usuarios.find(usuario => usuario.empresa === 'Facebook');
 // console.log(google);
 // 3.1
-const arr = [1, 2, 3, 4, 5];
-var newArr = arr.map(item => item + 10);
-console.log(newArr); // 3.2
-// Dica: Utilize uma constante pra function
-
-const usuario = {
-  nome: 'Diego',
-  idade: 23
+// const arr = [1, 2, 3, 4, 5];
+// var newArr = arr.map(item=> item + 10);
+// console.log(newArr);
+// // 3.2
+// // Dica: Utilize uma constante pra function
+// const usuario = { nome: 'Diego', idade: 23 };
+// const idade = usuario.idade;
+// console.log(idade);
+// // 3.3
+// // Dica: Utilize uma constante pra function
+// const nome = "Diego";
+// const idade2 = 23;
+// const mostraUsuario = function(nome, idade2){
+//     var u = [nome, idade2];
+//     console.log(u);
+// }
+// mostraUsuario('Diego',23);
+// // 3.4
+//    const promise = () => new Promise((resolve, reject) => resolve()); 
+//    console.log(promise);
+const empresa = {
+  nome: 'Rocketseat',
+  endereco: {
+    cidade: 'Rio do Sul',
+    estado: 'SC'
+  }
 };
-const idade = usuario.idade;
-console.log(idade); // 3.3
-// Dica: Utilize uma constante pra function
-
-const nome = "Diego";
-const idade2 = 23;
-
-const mostraUsuario = function (nome, idade2) {
-  var u = [nome, idade2];
-  console.log(u);
-};
-
-mostraUsuario('Diego', 23); // 3.4
-
-const promise = function () {
-  return new Promise(function (resolve, reject) {
-    return resolve();
-  });
-};
-
-console.log(promise);
+const {
+  nome,
+  endereco: {
+    cidade,
+    estado
+  }
+} = empresa;
+console.log(nome);
+console.log(cidade);
