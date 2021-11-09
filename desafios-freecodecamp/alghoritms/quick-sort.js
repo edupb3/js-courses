@@ -16,8 +16,10 @@ function swap(arr, x, y) {
   function pivot(arr, left = 0, right = arr.length - 1) {
     let shift = left;
     for (let i = left + 1; i <= right; i++) {
-      //Move all the small elements on the left side
+      //Move all the small elements on the left 
+      console.log(arr[i], arr[left], shift);
       if (arr[i] < arr[left]) swap(arr, i, ++shift);
+      console.log(arr);
     }
   
     //Finally swapping the last element with the left
