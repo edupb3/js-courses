@@ -43,5 +43,4 @@ function phoneticLookup(val) {
     // Altere apenas o código acima desta linha
     return result;
   }
-  
-  phoneticLookup("charlie");
+  console.log(phoneticLookup("charlie"));
