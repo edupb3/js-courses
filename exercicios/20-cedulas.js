@@ -36,6 +36,7 @@ function sacarDinheiro(valor, cedula=100){
 }
 console.log(sacarDinheiro(859));
 console.log(sacarDinheiro(912));
+console.log(sacarDinheiro(100));
 console.log(sacarDinheiro(89));
 console.log(sacarDinheiro(17));
 console.log(sacarDinheiro(6));
