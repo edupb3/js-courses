@@ -6,3 +6,6 @@ cumprimentar("Leonardo") // retornará "Olá, Leonardo!"
 cumprimentar("Maria") // retornará "Olá, Maria!"
  */
 
+function cumprimentar(nome){
+    return "Olá " + nome+ "!";
+}
