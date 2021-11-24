@@ -7,16 +7,18 @@ const URL = "http://files.cod3r.com.br/curso-js/funcionarios.json";
 
 axios.get(URL).then(response => {
     const lista = response.data;
-    const arr = Object.values(lista);
-    let result = arr.filter(listaMulheresChinesas).reduce(listaMenorSalario);    
+    const arrFuncionarios = Object.values(lista);
+    
+    let result = arrFuncionarios
+        .filter(({genero, pais}) => genero === "F" && pais === "China")
+        .reduce(listaMenorSalario);    
     console.log(result);
 })
 
-const listaMulheresChinesas = el => el.genero === "F" && el.pais === "China";
-const listaMenorSalario = (acc, el) => {
-    pessoaMenorSalario = acc;
-    if(el.salario < pessoaMenorSalario.salario){
-        pessoaMenorSalario = el;
+const listaMenorSalario = (salarioAnterior, funcionaria) => {
+    pessoaMenorSalario = salarioAnterior;
+    if(funcionaria.salario < pessoaMenorSalario.salario){
+        pessoaMenorSalario = funcionaria;
     }
     return pessoaMenorSalario;
 }
