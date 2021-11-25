@@ -10,10 +10,12 @@ axios.get(URL).then(response => {
     const arrFuncionarios = Object.values(lista);
     
     let result = arrFuncionarios
-        .filter(({genero, pais}) => genero === "F" && pais === "China")
+        .filter(mulherChinesa)
         .reduce(listaMenorSalario);    
     console.log(result);
 })
+
+const mulherChinesa = ({genero, pais}) => genero === "F" && pais === "China"
 
 const listaMenorSalario = (salarioAnterior, funcionaria) => {
     pessoaMenorSalario = salarioAnterior;
