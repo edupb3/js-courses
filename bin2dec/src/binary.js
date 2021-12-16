@@ -27,7 +27,7 @@ class Binary{
 
     sumElements = (a, b) => parseInt(a) + parseInt(b) 
     
-    decimalTransform = (el, index) => (el === "1") ? 2 ** (index): 0;            
+    decimalTransformArray = (el, index) => (el === "1") ? 2 ** (index): 0;            
     
     get value(){
         return this.#value
@@ -35,7 +35,7 @@ class Binary{
     get decimalValue(){
         let temp = this.#value.split("").reverse();                
         
-        return temp.map(this.decimalTransform).reduce(this.sumElements);
+        return temp.map(this.decimalTransformArray).reduce(this.sumElements);
         
     }
 
