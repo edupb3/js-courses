@@ -12,7 +12,7 @@ function destroyer(arr, ...args) {
         }
       })
     })
-    console.log(arr)  
+    console.log(arr)      
     return arr;
   }
   
