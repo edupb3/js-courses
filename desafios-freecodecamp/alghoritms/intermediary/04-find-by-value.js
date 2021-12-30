@@ -4,22 +4,16 @@ Faça uma função que olha através de um array de objetos (primeiro argumento)
 Por exemplo, se o primeiro argumento é [{ first: "Romeo", last: "Montague" }, { first: "Mercutio", last: null }, { first: "Tybalt", last: "Capulet" }], e o segundo argumento é { last: "Capulet" }, em seguida, você deve retornar o terceiro objeto do array (o primeiro argumento), porque contém o nome e o seu valor, que foi passado como segundo argumento. */
 
 function whatIsInAName(collection, source) {  
-  const result = [];
-
   let key = Object.keys(source);  
-  for(let el of collection){
+  const result = collection.filter(el => {
     let insert = true;
-    for (let k of key){
-      insert = (el[k] ? el[k] == source[k] : false) && insert;  
+    for (let k of key){      
+      insert = (el.hasOwnProperty(k) ? el[k] == source[k] : false) && insert;  
     }
-    if (insert)
-      result.push(el);    
-  }  
-  
-  return result;    
+    return insert;
+  })  
+  return result;
 }
-
-
 
 whatIsInAName([{ first: "Romeo", last: "Montague" }, { first: "Mercutio", last: null }, { first: "Tybalt", last: "Capulet" }], { last: "Capulet" }) //deve retornar [{ first: "Tybalt", last: "Capulet" }].
 
