@@ -18,17 +18,8 @@ const sum = [];
 function hourGlassCalculate(arr){    
     
     let [ line1, line2, line3] = arr;
-
-    const sumLines = (acc, el) => acc + el;
     const removeFirstElement = arr => arr.shift();
-
-    for (let col=0; col<=(line1.length - 3); col++){                
-        let hourGlassLine1 = [line1[col], line1[col+1], line1[col+2]];
-        let hourGlassLine2 = [ 0   ,  line2[col+1],  0    ];
-        let hourGlassLine3 = [line3[col], line3[col+1], line3[col+2]];    
-        sum.push(hourGlassLine1.reduce(sumLines) + hourGlassLine2.reduce(sumLines) + hourGlassLine3.reduce(sumLines))        
-    }
-    
+    calculate(line1, line2, line3);    
     removeFirstElement(arr);
 
     if (arr.length < 3){
@@ -37,6 +28,15 @@ function hourGlassCalculate(arr){
     }
     return hourGlassCalculate(arr);    
     
+}
+function calculate(line1, line2, line3) {
+    const sumLines = (acc, el) => acc + el;
+    for (let col = 0; col <= (line1.length - 3); col++) {
+        let hourGlassLine1 = [line1[col], line1[col + 1], line1[col + 2]];
+        let hourGlassLine2 = [0, line2[col + 1], 0];
+        let hourGlassLine3 = [line3[col], line3[col + 1], line3[col + 2]];
+        sum.push(hourGlassLine1.reduce(sumLines) + hourGlassLine2.reduce(sumLines) + hourGlassLine3.reduce(sumLines));
+    }
 }
 
 hourGlassCalculate([
