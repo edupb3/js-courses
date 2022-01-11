@@ -23,19 +23,24 @@ function Solution(){
 
 	this.display=function(head){
         var start=head;
-            while(start){
+            while(start){                                
                 process.stdout.write(start.data+" ");
                 start=start.next;
             }
     };
 }
 function main(){
-    var T=parseInt(readLine());
+    //var T=parseInt(readLine());
     var head=null;
     var mylist=new Solution();
-    for(i=0;i<T;i++){
-        var data=parseInt(readLine());
-        head=mylist.insert(head,data);
+    // for(i=0;i<T;i++){
+    //     var data=parseInt(readLine());
+    //     head=mylist.insert(head,data);
+    // }
+    var data=[1,5,3,8];
+    for(i=0;i<data.length;i++){
+        head=mylist.insert(head,data[i]);
     }
     mylist.display(head);
 }		
+main();
