@@ -29,6 +29,26 @@ function Node(data) {
         
         return this.root;
     };
+
+    
+    this.levelOrder = function(root) {                
+        
+        if(root !== undefined & root !== null){
+            if(root.first === undefined){
+                console.log(root);
+            }            
+            if(root.left){
+                console.log(root.left.data);
+                root.left.first = "NO";
+            }
+            if(root.right){
+                console.log(root.right.data);
+                root.right.first = "NO"
+            }            
+            this.levelOrder(root.left);
+            this.levelOrder(root.right);
+        }
+	}; 
     
     // Start of function getHeight
     this.getHeight = function(root) {
@@ -43,12 +63,23 @@ function Node(data) {
 
     }
 
-    const elements = [3, 5, 2, 1, 4, 6, 7];
+    //const elements = [3, 5, 2, 1, 4, 6, 7];
+    //const elements = [3, 5, 4, 7, 2, 1];
+    const elements = [20,50,35,44,9,15,62,11,13] // => 20 9 50 15 35 62 11 44 13
     let root = elements.reduce((acc,el) => this.insert(acc, el ), null)
-    console.log(this.getHeight(root));
+    //console.log(this.getHeight(root));
+    this.levelOrder(root);
 }) ()
 
 
 
     
 
+/*
+				20	
+		9				50
+			15		35		62
+		11		
+			44
+		13
+*/
