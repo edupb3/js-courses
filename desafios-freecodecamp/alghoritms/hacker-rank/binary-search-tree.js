@@ -33,21 +33,24 @@ function Node(data) {
     
     this.levelOrder = function(root) {                
         
-        if(root !== undefined & root !== null){
-            if(root.first === undefined){
-                console.log(root);
+        const printData = data => console.log(data);
+        
+        const printNode = arr => {
+            const nodes = [];
+            for(el of arr){
+                if (el !== null){
+                    printData(el.data)
+                    nodes.push(el.left);
+                    nodes.push(el.right);
+                }
             }            
-            if(root.left){
-                console.log(root.left.data);
-                root.left.first = "NO";
-            }
-            if(root.right){
-                console.log(root.right.data);
-                root.right.first = "NO"
-            }            
-            this.levelOrder(root.left);
-            this.levelOrder(root.right);
+            nodes.length !== 0 ? printNode(nodes) : null;
         }
+
+        const level = [];
+        level.push(root);
+        printNode(level);
+
 	}; 
     
     // Start of function getHeight
