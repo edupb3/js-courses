@@ -5,6 +5,8 @@ function Node(data) {
     this.left = null;
     this.right = null;
 }; 
+const printData = data => console.log(data);
+
 
 // Start of function BinarySearchTree
 (function BinarySearchTree() {
@@ -30,10 +32,32 @@ function Node(data) {
         return this.root;
     };
 
+    this.removeDuplicates = function(head){
+        const elements = [];
+        const printNode = arr => {
+            const nodes = [];            
+            for(el of arr){
+                if (el !== null){
+                    if(elements.indexOf(el.data) === -1){
+                        elements.push(el.data)                            
+                        nodes.push(el.next);                        
+                    }else{
+                        el.left = null;
+                        el.right = null;
+                        el = null;                        
+                    }
+                    
+                }
+            }            
+            return nodes.length !== 0 ? printNode(nodes) : elements.join(" ");            
+        }
+
+        const level = [];
+        level.push(head);
+        console.log((printNode(level)));        
+    }
     
     this.levelOrder = function(root) {                
-        
-        const printData = data => console.log(data);
         
         const printNode = arr => {
             const nodes = [];
@@ -68,10 +92,12 @@ function Node(data) {
 
     //const elements = [3, 5, 2, 1, 4, 6, 7];
     //const elements = [3, 5, 4, 7, 2, 1];
-    const elements = [20,50,35,44,9,15,62,11,13] // => 20 9 50 15 35 62 11 44 13
+    //const elements = [20,50,35,44,9,15,62,11,13] // => 20 9 50 15 35 62 11 44 13
+    const elements = [1,2,2,3,3,4]; // => 1,2,3,4
     let root = elements.reduce((acc,el) => this.insert(acc, el ), null)
     //console.log(this.getHeight(root));
-    this.levelOrder(root);
+    //this.levelOrder(root);
+    this.removeDuplicates(root);
 }) ()
 
 
