@@ -9,15 +9,21 @@
 1000 Hackos
 */
 
-function processData(input) {
-    const [returned, expected] =  input.split("\n")
-    const yearExpected  = Number.parseInt(expected.split(" ")[2]);
-    const yearReturned  = Number.parseInt(returned.split(" ")[2]);
-    const monthExpected = Number.parseInt(expected.split(" ")[1]);
-    const monthReturned = Number.parseInt(returned.split(" ")[1]);
-    const dayExpected   = Number.parseInt(expected.split(" ")[0]);
-    const dayReturned   = Number.parseInt(returned.split(" ")[0]);
+const YEAR_INDEX = 2;
+const MONTH_INDEX = 1;
+const DAY_INDEX = 0
 
+const extractParams = ([expected, returned]) => {
+    return index => [Number.parseInt(expected.split(" ")[index]), Number.parseInt(returned.split(" ")[index])];
+}
+
+function processData(input) {    
+    const [returned, expected] =  input.split("\n")
+    const extract = extractParams([expected, returned]);
+    const [yearExpected, yearReturned]  = extract(YEAR_INDEX);
+    const [monthExpected, monthReturned]  = extract(MONTH_INDEX);
+    const [dayExpected, dayReturned]  = extract(DAY_INDEX);
+    
     if(yearReturned > yearExpected){
         return 10000
     }
@@ -36,20 +42,13 @@ function processData(input) {
     else{
         return 0
     }
-    
-    //const date = 0+dayExpected + "/"+ 0+monthExpected + "/"+ yearExpected
-    // const date = new Date(0+dayExpected + "/"+ 0+monthExpected + "/"+ yearExpected)
-    // const actual = new Intl.DateTimeFormat("pt-br").format(date)
-    // console.log(actual);
-    
-    
 } 
 
-//console.log(processData(`9 6 2015
-//6 6 2015`))
+console.log(processData(`9 6 2015
+6 6 2015`))
 
-// console.log(processData(`26 11 2015
-// 6 11 2015`))
+console.log(processData(`26 11 2015
+ 6 11 2015`))
 
 console.log(processData(`31 8 2004
 20 1 2004`))
