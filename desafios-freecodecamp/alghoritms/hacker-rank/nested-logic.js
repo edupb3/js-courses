@@ -17,6 +17,33 @@ const extractParams = ([expected, returned]) => {
     return index => [Number.parseInt(expected.split(" ")[index]), Number.parseInt(returned.split(" ")[index])];
 }
 
+const verifyYear = (yearReturned, yearExpected) => {
+    if(yearReturned > yearExpected){
+        return 10000
+    }
+    if(yearExpected > yearReturned){
+        return 0
+    }
+    return -1;
+}
+
+const verifyMonth = (monthReturned, monthExpected) => {
+    if(monthReturned > monthExpected){
+        return 500 * (monthReturned - monthExpected)
+    }
+    if(monthReturned < monthExpected){
+        return 0
+    }
+    return -1;
+}
+
+const verifyDay = (dayReturned, dayExpected) => {
+    if(dayReturned > dayExpected){        
+        return 15 * (dayReturned - dayExpected)
+    }
+    return 0    
+}
+
 function processData(input) {    
     const [returned, expected] =  input.split("\n")
     const extract = extractParams([expected, returned]);
@@ -24,24 +51,15 @@ function processData(input) {
     const [monthExpected, monthReturned]  = extract(MONTH_INDEX);
     const [dayExpected, dayReturned]  = extract(DAY_INDEX);
     
-    if(yearReturned > yearExpected){
-        return 10000
-    }
-    if(yearExpected > yearReturned){
-        return 0
-    }
-    if(monthReturned > monthExpected){
-        return 500 * (monthReturned - monthExpected)
-    }
-    if(monthReturned < monthExpected){
-        return 0
-    }
-    if(dayReturned > dayExpected){        
-        return 15 * (dayReturned - dayExpected)
-    }
-    else{
-        return 0
-    }
+    let ret = verifyYear(yearReturned, yearExpected);
+    
+    if (ret === -1){
+        ret = verifyMonth(monthReturned, monthExpected);
+        if(ret === -1){
+            ret = verifyDay(dayReturned, dayExpected);
+        }
+    }    
+    return ret;
 } 
 
 console.log(processData(`9 6 2015
