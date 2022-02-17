@@ -51,16 +51,24 @@ class CircularQueue {
   
     enqueue(item) {
       // Altere apenas o código abaixo desta linha    
-      this.queue[this.write] = item
-      this.write = this.write < this.max ? this.write+1 : 0    
-      return item
+      if(this.queue[this.write] === null){
+        this.queue[this.write] = item
+        this.write = this.write < this.max ? this.write+1 : 0    
+        return item;
+      }
+      return null; 
       // Altere apenas o código acima desta linha
     }
   
     dequeue() {
       // Altere apenas o código abaixo desta linha
-      this.read = this.read <= this.max ? this.read+1 : 0    
-      return this.queue.shift()
+      if(this.queue[this.read] !== null){  
+        const ret = this.queue[this.read];
+        this.queue[this.read] = null    
+        this.read = this.read < this.max ? this.read+1 : 0            
+        return ret
+      }
+      return null;
       // Altere apenas o código acima desta linha
     }
   }
@@ -69,6 +77,6 @@ class CircularQueue {
   t.enqueue(2)
   t.enqueue(3)
   t.enqueue(4)
-  t.enqueue(5)
+  t.dequeue()
   
   console.log(t.print());
